@@ -27,8 +27,8 @@ def book(request,id):
     if user:
         info = User.objects.get(username=request.user)
         email = info.email
-        subject = ' Murugan rentals tak'
-        message = " Contact details of Agent is :- Email :- ,Phone No- 55544,Mobile-Number:-9403683589"
+        subject = ' Home Rental Website'
+        message = "For More detail Information Contact :- 8237238080"
         recepient = str(email)
         send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently=False)
         return render(request, "Book.html")
@@ -49,8 +49,42 @@ def add_fev(request,id):
     else:
         return HttpResponse(" <h1> User is Not Log In </h1>")
 
-def searchbytype(request):
+def search(request):
     if request.method=="POST":
         type_ = request.POST.get('type')
-        print(type_)
-        return HttpResponse(" dfasdf")
+        city_ = request.POST.get('city')
+        price_ = request.POST.get('price')
+        print(type_,city_,price_)     
+        if(price_!="All"):
+            price_=int(price_)
+        if(type_!="All" and city_=="All" and price_=="All"):
+            result=property.objects.filter(type=str(type_))
+        elif(type_!="All" and city_!="All" and price_=="All"):
+            result=property.objects.filter(type=str(type_),city=str(city_))
+        elif(type_!="All" and city_!="All" and price_!="All"):
+            result=property.objects.filter(type=str(type_),city=str(city_),price__gt=price_)
+        elif(type_=="All" and city_!="All" and price_!="All"):
+            result=property.objects.filter(city=str(city_),price__gt=price_)
+        elif(type_=="All" and city_=="All" and price_!="All"):
+            result=property.objects.filter(price__gt=price_)
+        elif(type_=="All" and city_!="All" and price_!="All"):
+            result=property.objects.filter(city=str(city_),price__gt=price_)
+        elif(type_=="All" and city_!="All" and price_=="All"):
+            result=property.objects.filter(city=str(city_))
+        else:
+            result=property.objects.filter()
+        print("result ",result)
+        if result:
+            return render(request,'property-grid.html',{'data':result})
+        else:
+            return HttpResponse(" <h1> No Result Found</h1> ")
+    else:
+        return HttpResponse(" <h1> Denial </h1>")
+        
+def profile(request):
+    user=User.objects.get(username=request.user)
+    return render(request,'profile.html',{'user':user})
+
+def logout(request):
+    auth.logout(request)
+    return render(request,'index.html')

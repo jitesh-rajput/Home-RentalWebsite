@@ -38,36 +38,49 @@
     </div>
     <span class="close-box-collapse right-boxed ion-ios-close"></span>
     <div class="box-collapse-wrap form">
+      <form class="form-a" method="post" action="search">
+        {% csrf_token %}
         <div class="row">
-          <div class="col-md-12 mb-2">
+          <div class="col-md-6 mb-2">
             <div class="form-group">
-               <form method="post" action="searchbytype">
-              {% csrf_token %}
-                Type: - <input type="text" name="type"  required><br><br>
-            <button type="submit" class="btn btn-b">Search Property</button>
-             </form>
-            </div>
-          </div>
-          <div class="col-md-12 mb-2">
-            <div class="form-group">
-               <form method="post" action="searchbycity">
-              {% csrf_token %}
-                City: - <input type="text" name="city"  required><br><br>
-            <button type="submit" class="btn btn-b">Search Property</button>
-             </form>
-
+              <label for="Type">Type</label>
+              <select class="form-control form-control-lg form-control-a" name="type" id="Type">
+                <option>All</option>
+                <option>BHK</option>
+                <option> 2BHK </option>
+              </select>
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group">
-               <form method="post" action="searchbyprice">
-              {% csrf_token %}
-                Price: -    <input type="text" name="price"  required><br><br>
-            <button type="submit" class="btn btn-b">Search Property</button>
-             </form>
+              <label for="city">City</label>
+              <select class="form-control form-control-lg form-control-a" name="city" id="city">
+                <option>All</option>
+                <option> Pune </option>
+                <option> Aurangabad </option>
+                <option> Pimpari Chinchwad </option>
+                <option> Mumbai </option>
+                <option> Bangalore </option>
+              </select>
             </div>
           </div>
+          <div class="col-md-6 mb-2">
+            <div class="form-group">
+              <label for="price">Min Price</label>
+              <select name="price"  class="form-control form-control-lg form-control-a" id="price">
+                <option>All</option>
+                <option>10000</option>
+                <option>20000</option>
+                <option>50000</option>
+                <option>70000</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-b">Search Property</button>
+          </div>
         </div>
+      </form>
     </div>
   </div><!-- End Property Search Section -->>
 
@@ -122,11 +135,11 @@
           {% csrf_token %}
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="Username" >
+            <input type="text" class="form-control" id="username" name="Username" required>
           </div>
           <div class="form-group">
             <label for="Password">Password</label>
-            <input type="password" class="form-control" id="Password" name="Password">
+            <input type="password" class="form-control" id="Password" name="Password" required>
           </div>
           <input type="submit" class="btn btn-outline-success my-2 ml-2">
         </form>
@@ -151,27 +164,27 @@
           {% csrf_token %}
           <div class="form-group">
             <label for="Firstname">First Name</label>
-            <input type="text" class="form-control" id="Firstname" name="Firstname">
+            <input type="text" class="form-control" id="Firstname" name="Firstname" required>
           </div>
           <div class="form-group">
             <label for="Lastname">Last Name</label>
-            <input type="text" class="form-control" id="Lastname" name="Lastname">
+            <input type="text" class="form-control" id="Lastname" name="Lastname" required>
           </div>
           <div class="form-group">
             <label for="Uname">Username</label>
-            <input type="text" class="form-control" id="Uname" name="Uname">
+            <input type="text" class="form-control" id="Uname" name="Uname" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email" required >
           </div>
           <div class="form-group">
             <label for="Password1">Password</label>
-            <input type="password" class="form-control" id="Password1" name="pass1">
+            <input type="password" class="form-control" id="Password1" name="pass1" required>
           </div>
           <div class="form-group">
             <label for="Password2"> Repeat Password</label>
-            <input type="password" class="form-control" id="Password2" name="pass2">
+            <input type="password" class="form-control" id="Password2" name="pass2" required>
           </div>
         <button type="submit" class="btn btn-outline-success my-2 ml-2">Submit</button>
       </form>

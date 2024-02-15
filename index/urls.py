@@ -8,8 +8,5 @@ urlpatterns = [
     path('createnewacc',views.createnewacc,name='createnewacc'),
     path('logout', views.logout, name='logout'),
     path('profile',views.profile,name='profile'),
-    path('searchbycity',views.searchbycity,name='searchbycity'),
-    path("searchbytype", views.searchbytype, name="searchbytype"),
-    path("searchbyprice",views.searchbyprice,name="searchbyprice"),
-
+    path("search", views.search, name="search"),
 ]
